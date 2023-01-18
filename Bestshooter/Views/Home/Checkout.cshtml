@@ -1,0 +1,96 @@
+﻿@model Bestshooter.ViewModel.CheckoutPageViewModel
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Navigation section  -->
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon icon-bar"></span>
+                <span class="icon icon-bar"></span>
+                <span class="icon icon-bar"></span>
+            </button>
+            <a href="#top" class="navbar-brand smoothScroll">BESTSHOOTER.IR</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a id="listScroll" href="#contact" class="smoothScroll"><span>تکمیل اطلاعات خرید</span></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Contact section -->
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10 col-sm-12">
+                <h1>پکیج های انتخاب شده</h1>
+                <div style="border-bottom: solid; border-bottom-color: cadetblue;"></div>
+                <div style="direction: rtl;" class="col-lg-offset-1 col-lg-10 col-sm-12">
+                    @foreach (var item in Model.vm)
+                    {
+                        <div style="margin: 8px; float: right; border-color: cadetblue; border: solid;">
+                            <img src="@Url.Content(item.pack.Picture)" height="150" width="200" style="margin:5px;" />
+                            <div>
+                                <h2>پکیج @item.pack.Name</h2>
+                                <h2>تعداد : @item.qty</h2>
+                                <h2>قیمت پایه : @item.pack.Fee</h2>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <br />
+                <div style="text-align: center; border: solid; border-color: cadetblue; background-color: #4800ff;" class="col-lg-offset-1 col-lg-10 col-sm-12">
+                    <h1>مبلغ کل : @Model.fee</h1>
+                </div>
+                <div class="col-lg-offset-1 col-lg-10 col-sm-12 section-title wow fadeInUp" data-wow-delay="0.4s">
+                    <h1>اطلاعات تکمیلی</h1>
+                    <p>مهم : برنامه برای ایمیلی که وارد کنید و نام کاربری و رمز عبور به شماره موبایل شما ارسال خواهد شد.در وارد کردن اطلاعات دقت کنید</p>
+                </div>
+                @using (Html.BeginForm("ShippingInfo", "Home", FormMethod.Post))
+                {
+                    @Html.Hidden("totalfee", Model.fee)
+                    @Html.Hidden("packs", Model.pa)
+                    <div class="col-md-12 col-sm-12">
+                        <input dir="rtl" name="Name" required="required" type="text" class="form-control" id="Name" placeholder="نام">
+                    </div>
+                    <div class="col-md-12 col-sm-12">
+
+                        <input dir="rtl" name="Sirname" required="required" type="text" class="form-control" id="Sirname" placeholder="نام خانوادگی">
+                    </div>
+                    <div class="col-md-12 col-sm-12">
+                        <input dir="rtl" name="Email" required="required" type="email" class="form-control" id="Email" placeholder="ایمیل">
+                    </div>
+                    <div class="col-md-12 col-sm-12">
+
+                        <input dir="rtl" name="Mobile" required="required" type="text" class="form-control" id="Mobile" placeholder="موبایل">
+                    </div>
+                    <div class="col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6">
+                        <input type="submit" id="btngo" class="form-control" value="وصل شدن به درگاه">
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+</section>
+
+@section scripts
+    {
+    <script>
+        $("#btngo").click(function (e)
+        {
+            var strMobile = $("#Mobile").val();
+            var reg2 = new RegExp("^09[0-3][0-9]{8}$");
+            if (reg2.test(strMobile) == false)
+            {
+                e.preventDefault();
+                alert("اطلاعات وارد شده نادرست است");
+            }
+        });
+    </script>
+    }

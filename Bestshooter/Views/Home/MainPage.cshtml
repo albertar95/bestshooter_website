@@ -1,0 +1,225 @@
+﻿@model Bestshooter.ViewModel.FirstPageViewModel
+@{
+    ViewBag.Title = "سایت بست شوتر";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Preloader section -->
+<div class="preloader">
+    <div class="sk-spinner sk-spinner-pulse"></div>
+</div>
+<!-- Navigation section  -->
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon icon-bar"></span>
+                <span class="icon icon-bar"></span>
+                <span class="icon icon-bar"></span>
+            </button>
+            <a href="#top" class="navbar-brand smoothScroll">BESTSHOOTER.IR</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#contact" class="smoothScroll"><span>تماس با ما</span></a></li>
+                <li><a href="#gallery" class="smoothScroll"><span>سرویس های گیمینگ</span></a></li>
+                <li><a href="#about" class="smoothScroll"><span>ماکرو</span></a></li>
+                <li><a href="#home" class="smoothScroll"><span>خانه</span></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Home section -->
+<section id="home">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10 col-sm-12 wow fadeInUp" data-wow-delay="0.3s">
+                <h1 style="color: black; opacity: 20; font-weight: 500;" class="wow fadeInUp" data-wow-delay="0.6s">Best Shooter سرویس های</h1>
+                <p style="color: black; opacity: 20; font-weight: 500;" class="wow fadeInUp" data-wow-delay="0.9s">حرفه ای  بازی کنید</p>
+                <a href="#about" class="smoothScroll btn btn-success btn-lg wow fadeInUp" data-wow-delay="1.2s">بیشتر بدانید</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- About section -->
+<div class="mback">
+    <section id="about" style="background: inherit;">
+        <div class="container">
+            <div class="row">
+                <div dir="rtl" class="col-md-10 col-sm-9 wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="about-thumb" style="margin: 5px;">
+                        <h1 style="border-bottom: solid; border-color: cadetblue;">درباره ما</h1>
+                        <p style="font-size: 18px; text-align: center;">
+                            *The True BESTSHOOTERs Are The Ones Who Uses The Professional Gaming Tools*
+                        </p>
+                        <p>انسان همواره با به کارگیری علم تجربه توانسته سخترین کارها رو به آسون ترین شکل ممکن و طولانی ترین آنها رو در زمان کوتاه انجام بده!!!</p>
+                        <p>سایت بست شوتر(BEST SHOOTER)تمامی نیازها,امکانات ,آموزش ها و سرویس های گیمینگ درتمام بازی های شوتر اول شخص را برای حرفه ای تر شدن شما گیمرهای عزیز فراهم آورده و با بروزترین تکنولوژی و کاملا علمی و تست شده در اختیار شما عزیزان قرار می دهد.</p>
+                    </div>
+                </div>
+                <div dir="ltr" class="col-md-2 col-sm-3 wow fadeInUp about-img" data-wow-delay="0.6s">
+                    <img src="@Url.Content("~/Content/Template/images/def/aboutus.jpg")"  class="img-responsive img-circle" alt="About" />
+                </div>
+                <div class="clearfix"></div>
+                <div dir="rtl" class="col-md-10 col-sm-9 wow fadeInUp" data-wow-delay="0.2s">
+                    <div style="margin: 5px;" class="about-thumb">
+                        <h1 style="border-bottom: solid; border-color: cadetblue;">ماکرو چیست؟</h1>
+                        <p>ایده که قصد داریم به شما گیمرهای عزیز معرفی کنیم ماکرو می باشد.</p>
+                        <p>
+                            ماکرو در تعریف برنامه نویسی مجموعه ای از دستورهایی است که مشابه زیربرنامه یکبار نوشته می شود و چندین بار فراخوانی میشود.با انتشار سری بازی های بتلفیلد و کانتر(COUNTER STRIKE)انقلابی در گیم پلی بازی های شوتر اول شخص انجام شد.بطوریکه در بازی 
+وقتی شما از یک اسلحه استفاده می کردید تقریبا مطابق واقعیت دارای لگد و پخش شدن تیرها می شد,خب اینجا ایده و طرح ما به شما گیمر ها کمک می کند تا اسلحه ها را بهتر کنترل کنید و دقیق تر از دیگران شلیک کنید.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-3 wow fadeInUp about-img" data-wow-delay="0.6s">
+                    <img src="@Url.Content("~/Content/Template/images/def/macro.jpg")"  class="img-responsive img-circle" alt="About" />
+                </div>
+                <div class="clearfix"></div>
+                <div dir="rtl" class="col-md-10 col-sm-9 wow fadeInUp" data-wow-delay="0.2s">
+                    <div style="margin: 5px;" class="about-thumb">
+                        <h1 style="border-bottom: solid; border-color: cadetblue;">فرق ماکرو با چیت یا هک ؟</h1>
+                        <p>
+                            خب همه می دانیم کار چیت یا هک، کار یه برنامه ایی ک اصلا انسان دخالتی نداره و فقط روشن خاموش میکنه و اصلا انسان نمی تونه انجام بده و انتی چیت هایی بسیاری طراحی شده اند تا جلوی چیترها و هکرها گرفته شود و هرروز هزاران اکانت بن و مسدود می شود
+اما ماکرو توسط انسان انجام میشه و درصد خطا یا تلرانس پایین داره 
+نکته خیلی مهم که میشه بهش اشاره کرد اینه که سازندگان بازی و طراحان انتی چیت ها به هیچ عنوان ماکرو موس رو جزو چیت یا هک بحساب نمی آورند بلکه از آن به عنوان مهارت یاد میکنند.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-3 wow fadeInUp about-img" data-wow-delay="0.6s">
+                    <img src="@Url.Content("~/Content/Template/images/def/cheat.jpg")"  class="img-responsive img-circle" alt="About" />
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 col-sm-12 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="section-title text-center">
+                        <h1 style="border-bottom: solid; border-color: cadetblue;">سرویس های پر فروش</h1>
+                    </div>
+                </div>
+                <!-- team carousel -->
+                <div id="team-carousel" class="owl-carousel">
+                    @foreach (var item in Model.MostOrdered)
+                    {
+                        <div class="item col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.4s">
+                            <div class="team-thumb">
+                                <div class="image-holder">
+                                    <img src="@Url.Content(item.Picture)" class="img-responsive" alt="Mary">
+                                </div>
+                                <p class="description">قیمت : @item.Fee تومان</p>
+                            </div>
+                        </div>
+  
+                    }
+
+                </div>
+                <!-- end team carousel -->
+            </div>
+        </div>
+    </section>
+</div>
+<!-- Gallery section -->
+<div class="gback">
+    <section id="gallery" style="background: inherit;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-2 col-md-8 col-sm-12 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="section-title">
+                        <h1 style="border-bottom: solid; border-color: cadetblue;">محصولات</h1>
+                    </div>
+                </div>
+                <ul class="grid cs-style-4">
+                    @foreach (var item in Model.AllGames)
+                    {
+                        <li class="col-md-6 col-sm-6" style="margin-bottom: 50px;">
+                            <figure>
+                                <div>
+                                    <img src="@Url.Content(item.Pic1)" alt="image 1">
+                                </div>
+                                <figcaption>
+                                    <h1>@item.Name</h1>
+                                    <small>@item.Preface</small>
+                                    <a href="/Games/@item.Name" target="_blank">جزییات</a>
+                                </figcaption>
+                            </figure>
+                        </li> 
+                    }
+                </ul>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- Contact section -->
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10 col-sm-12">
+                <div class="col-lg-offset-1 col-lg-10 section-title wow fadeInUp" data-wow-delay="0.4s">
+                    <h1>ارتباط با ما</h1>
+                    <p>.ما را از راهنمایی ها و نظرات خود مطلع کنید</p>
+                </div>
+                <form action="#" method="post" class="wow fadeInUp" data-wow-delay="0.6s">
+                    <div class="col-md-12 col-sm-12">
+                        <input dir="rtl" id="Name" type="text" class="form-control" placeholder="نام">
+                        <input dir="rtl" id="Sirname" type="text" class="form-control" placeholder="نام خانوادگی">
+                    </div>
+                    <div class="col-md-12 col-sm-12">
+                        <textarea dir="rtl" id="Message" rows="6" class="form-control" placeholder="پیام"></textarea>
+                    </div>
+                    <div class="col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6">
+                        <a id="SendMessage" style="font-size: 22px; font-weight: bold;" class="btn btn-success SendMessage">ارسال پیام</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Footer section -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <ul class="social-icon">
+                    <li><a href="@Model.sets.Telegram" target="_blank" title="Telegram" class="fa fa-paper-plane wow fadeInUp" data-wow-delay="0.2s"></a></li>
+                    <li><a href="@Model.sets.Aparat" target="_blank" title="Aparat" class="fa fa-support wow fadeInUp" data-wow-delay="0.4s"></a></li>
+                    <li><a href="@Model.sets.Instagram" target="_blank" title="Instagram" class="fa fa-instagram wow fadeInUp" data-wow-delay="0.8s"></a></li>
+                    <li><a href="@Model.sets.Youtube" target="_blank" title="Youtube" class="fa fa-youtube wow fadeInUp" data-wow-delay="1.0s"></a></li>
+                </ul>
+                <p class="wow fadeInUp" data-wow-delay="1s" dir="rtl">
+                   شماره تماس : @Model.sets.Tell
+                        <br />
+                  ایمیل : @Model.sets.Email
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Back top -->
+<a href="#" class="go-top"><i class="fa fa-angle-up"></i></a>
+@section scripts
+    {
+    <script src="~/Content/Template/js/vegas.min.js"></script>
+    <script src="~/Content/Template/js/owl.carousel.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".SendMessage").click(function (e) {
+                e.preventDefault();
+                $.ajax(
+                    {
+                        url: '@Url.Action("SendMessage", "Home")',
+                        type: "Post",
+                        dataType: "Json",
+                        data: { Name: $("#Name").val(), Sirname: $("#Sirname").val(), Message: $("#Message").val() },
+                        success: function (result) {
+                            if (result.Success) {
+                                alert(result.Script);
+                                location.reload();
+                            } else {
+                                alert("خطا در دیتابیس");
+                            }
+                        },
+                        error: function () {
+                            alert("error");
+                        }
+                    });
+            });
+            $("#row").owlCarousel();
+        });
+    </script>
+}

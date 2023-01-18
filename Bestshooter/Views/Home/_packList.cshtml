@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Bestshooter.ViewModel.PacklistViewModel>
+<table class="table table-striped">
+    <tr style="background: #22696b; direction: rtl;">
+        <th style="text-align: center;">عملیات</th>
+        <th style="text-align: center;">قیمت محصول</th>
+        <th style="text-align: center;">تعداد محصول</th>
+        <th style="text-align: center;">نام محصول</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr style="background: #0094ff;">
+            <td>
+                <a class="btn btn-success del" pack="@item.Game" packName="@item.cookieName" style="font-size:16px;text-align:center;display:inherit;">حذف</a>
+            </td>
+            <td>
+                <input type="text" id="total-@item.cookieName" value="@item.Fee تومان" readonly="true" style="font-size:16px;background:#22696b;text-align:center;direction:rtl;" />
+            </td>
+            <td>
+                <input type="number" class= "txtQty" bp="@item.Fee" pack="@item.Game" packName="@item.cookieName" min="1" value="@item.Qty" style="width:50px;font-size:16px;direction:rtl;background:#22696b;text-align:center;" />
+            </td>
+            <td>
+                <input type="text" style="font-size:16px;text-align:center;direction:rtl;background:#22696b;" value="@item.cookieName " />
+            </td>
+        </tr> 
+    }
+</table>
+

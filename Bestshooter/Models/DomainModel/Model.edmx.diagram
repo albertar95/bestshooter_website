@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="739d06fa49074414bbff2dbe3b5a923f" Name="Diagram1">
+        <EntityTypeShape EntityType="Bestshooter1Model.Factor" Width="1.5" PointX="4.3126035408641226" PointY="30.85425069874816" />
+        <EntityTypeShape EntityType="Bestshooter1Model.Game" Width="1.5" PointX="10.874085667950141" PointY="11.453158279626239" />
+        <EntityTypeShape EntityType="Bestshooter1Model.Message" Width="1.5" PointX="6.2118773321676422" PointY="5.7666631218822033" />
+        <EntityTypeShape EntityType="Bestshooter1Model.Order" Width="1.5" PointX="11.636973364109627" PointY="13.869170418879563" />
+        <EntityTypeShape EntityType="Bestshooter1Model.Pack" Width="1.5" PointX="6.0426116986398641" PointY="12.774312263715226" />
+        <EntityTypeShape EntityType="Bestshooter1Model.Setting" Width="1.5" PointX="3.0052150203870682" PointY="8.9560232204180323" />
+        <AssociationConnector Association="Bestshooter1Model.FK_Factors_Orders" />
+        <AssociationConnector Association="Bestshooter1Model.FK_Packs_Games" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

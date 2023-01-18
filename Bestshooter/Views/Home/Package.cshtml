@@ -1,0 +1,181 @@
+﻿@model  Bestshooter.ViewModel.PackageViewModel
+@{
+    ViewBag.Title = Model.Game.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="preloader">
+    <div class="sk-spinner sk-spinner-pulse"></div>
+</div>
+<!-- Navigation section  -->
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon icon-bar"></span>
+                <span class="icon icon-bar"></span>
+                <span class="icon icon-bar"></span>
+            </button>
+            <a href="#top" class="navbar-brand smoothScroll">BESTSHOOTER.IR</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a id="listScroll" href="#contact" class="smoothScroll"><span>لیست خرید شما</span></a></li>
+                <li><a href="#gallery" class="smoothScroll"><span>پکیج ها</span></a></li>
+                <li><a href="#about" class="smoothScroll"><span>توضیحات</span></a></li>
+                <li><a href="#home" class="smoothScroll"><span>خانه</span></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Home section -->
+        <div class="overlay2" style="background-image:url(@Model.Game.Pic2);">
+    <section id="home" style="background:inherit;">
+        <div class="container">
+            <div class="row">
+               <div class="col-md-offset-1 col-md-10 col-sm-12 wow fadeInUp" data-wow-delay="0.3s">
+                    <h1 style="color: black; opacity: 20; font-weight: 500;" class="wow fadeInUp" data-wow-delay="0.6s">@Model.Game.Name</h1>
+                    <a href="#about" class="smoothScroll btn btn-success btn-lg wow fadeInUp" data-wow-delay="1.2s">بیشتر بدانید</a>
+                </div>
+            </div>
+        </div>
+    </section>
+            </div>
+<!-- About section -->
+<section id="about" style="background-image: url(../Content/Template/images/bg1.jpg);">
+    <div class="container">
+        <div class="row">
+            <div dir="rtl" class="col-md-12 col-sm-12 wow fadeInUp" data-wow-delay="0.2s">
+                <div style="margin: 5px;" class="about-thumb">
+                    <h1>پکیج @Model.Game.Name</h1>
+                    <p>@Model.Game.Cont</p>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</section>
+<!-- Gallery section -->
+<section id="gallery">
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-12 col-sm-12 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="section-title">
+                    <h1>محتویات</h1>
+                </div>
+                <div style="margin: 15px; border: solid; border-color: cadetblue;">
+                    @foreach (var item in Model.Packages)
+                    {
+                        <div dir="rtl" class="col-md-12 col-sm-12 wow fadeInUp" data-wow-delay="0.2s">
+                            <h1>@item.Name</h1>
+                            <div class="about-thumb" style="margin-top: 5px; margin-bottom: 5px; border: double; border-color: cadetblue;">
+                                <div dir="ltr" class="col-md-6 col-sm-6 col-height wow fadeInUp" data-wow-delay="0.6s" style="margin-top: 30px; margin-bottom: 5px; height: inherit;">
+                                    <img src="@Url.Content(item.Picture)"  class="img-responsive" alt="About" />
+                                </div>
+                                <div id="asuimg2" dir="ltr" class="col-md-6 col-sm-6 col-height wow fadeInUp" data-wow-delay="0.6s" style="margin-top: 30px; margin-bottom: 5px; height: inherit;">
+                                    <img src="@Url.Content(item.DescPicture)"  class="img-responsive" alt="About" />
+                                </div>
+                            </div>
+                            <iframe height="100" width="100"></iframe>
+                            <iframe height="100" width="100"></iframe>
+                            <iframe height="100" width="100"></iframe>
+                            <iframe height="100" width="100"></iframe>
+                        </div>
+                        <div class="col-md-2 col-sm-3 fadeInUp" style="margin: 5px; float: inherit;">
+                            <a class="btn btn-success btnAddToCard" pi="@item.Id" pack1="@item.Name" pack="@Model.Game.Name">اضافه کردن به لیست خرید</a>
+                        </div>
+                        <div class="clearfix"></div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- basketlist section -->
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10 col-sm-12">
+                <div class="col-lg-offset-1 col-lg-10 section-title wow fadeInUp" data-wow-delay="0.4s">
+                    <h1>لیست پکیج های انتخاب شده</h1>
+                    @Html.Partial("_packList", Model.pl)
+                </div>
+                <div class="col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6">
+                    <a target="_blank" class="btn btn-success" style="font-size:22px;font-weight:bold;" href="/Checkout/@Model.Game.Name">مرحله بعدی</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Back top -->
+<a href="#" class="go-top"><i class="fa fa-angle-up"></i></a>
+@section scripts
+    {
+    <script>
+        $(function () {
+            $(".btnAddToCard").click(function (e) {
+                e.preventDefault();
+                var gname = $(this).attr("pack");
+                var pname = $(this).attr("pack1");
+                $.ajax(
+                    {
+                        url: '@Url.Action("AddToCart", "Home")',
+                        data: { pName: pname, gName: gname},
+                        type: "Post",
+                        dataType: "Json",
+                        success: function (result) {
+                            if (result.Success) {
+                                location.reload();
+                                alert(result.Script);
+                            }
+                            else {
+                                alert(result.Script);
+                            }
+                        },
+                        error: function () {
+                            eval(error);
+                        }
+                    });
+            });
+            $(".txtQty").change(function () {
+                var gname = $(this).attr("pack");
+                var pri = $(this).attr("bp");
+                $.ajax(
+        {
+            url: '@Url.Action("priceCal", "Home")',
+            type: "Post",
+            dataType: "Json",
+            data: { pName: $(this).attr("packName"), gName: gname, Count: $(this).val(),price: pri },
+            success: function (result) {
+                if (result.Success) {
+                    $(result.Script).attr("value", result.Html);
+                }
+            },
+            error: function () {
+                alert("error");
+            }
+        });
+            });
+
+            $(".del").click(function (e) {
+                var gname = $(this).attr("pack");
+                $.ajax(
+       {
+           url: '@Url.Action("DeleteCart", "Home")',
+           data: { pName: $(this).attr("PackName"), gName: gname },
+           type: "Post",
+           dataType: "Json",
+           success: function (result) {
+               if (result.Success) {
+                   $("#product-row").hide();
+                   alert(result.Script);
+                   window.location.reload();
+               }
+           },
+           error: function () {
+               alert("error");
+           }
+       });
+            });
+        });
+    </script>
+}
