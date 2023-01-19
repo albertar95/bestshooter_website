@@ -7,7 +7,7 @@ namespace Bestshooter.Helper
 {
     public class Utilities
     {
-       static Bestshooter1Entities db = null;
+        static Bestshooter1Entities db = null;
         public static List<Pack> FetchBestOrder()
         {
             try
@@ -44,7 +44,7 @@ namespace Bestshooter.Helper
                 return null;
             }
         }
-        public static Game FetchGame(string name) 
+        public static Game FetchGame(string name)
         {
             try
             {
@@ -56,7 +56,7 @@ namespace Bestshooter.Helper
                 return null;
             }
         }
-        public static List<Pack> GatherPacks(int id) 
+        public static List<Pack> GatherPacks(int id)
         {
             try
             {
@@ -68,7 +68,7 @@ namespace Bestshooter.Helper
                 return null;
             }
         }
-        public static Pack FPack(string Name) 
+        public static Pack FPack(string Name)
         {
             try
             {
@@ -80,17 +80,17 @@ namespace Bestshooter.Helper
                 return null;
             }
         }
-        public static bool SaveMessage(string name,string sirname,string message) 
+        public static bool SaveMessage(string name, string sirname, string message)
         {
             try
             {
                 db = new Bestshooter1Entities();
                 int mid = 0;
-                if(db.Messages.Any())
+                if (db.Messages.Any())
                 {
-                mid = db.Messages.OrderByDescending(p => p.Id).First().Id + 1;
+                    mid = db.Messages.OrderByDescending(p => p.Id).First().Id + 1;
                 }
-                Message m = new Message() { Id = mid, Message1 = message, Name = name, Sirname = sirname ,Date = DateTime.Now};
+                Message m = new Message() { Id = mid, Message1 = message, Name = name, Sirname = sirname, Date = DateTime.Now, Read = 0 };
                 db.Messages.Add(m);
                 if (db.SaveChanges() == 1)
                 {
@@ -104,7 +104,7 @@ namespace Bestshooter.Helper
                 return false;
             }
         }
-        public static Setting FSetting() 
+        public static Setting FSetting()
         {
             try
             {
@@ -116,7 +116,7 @@ namespace Bestshooter.Helper
                 return null;
             }
         }
-        public static bool SaveOrder(string name,string sirname,string email,string mobile,string packs,string totalfee) 
+        public static int SaveOrder(string name, string sirname, string email, string mobile, string packs, string totalfee)
         {
             db = new Bestshooter1Entities();
             int oid = 0;
@@ -125,9 +125,46 @@ namespace Bestshooter.Helper
             Order ord = new Order() { Id = oid, Date = DateTime.Now, Email = email, Mobile = mobile, Name = name, PackIds = packs, Sirname = sirname, TotalFee = totalfee };
             db.Orders.Add(ord);
             if (db.SaveChanges() == 1)
-                return true;
+                return oid;
             else
+                return -1;
+        }
+        public static Order FOrder(int id)
+        {
+            try
+            {
+                db = new Bestshooter1Entities();
+                return db.Orders.Where(p => p.Id == id).First();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+        public static bool SaveFactor(int orderId, long refId)
+        {
+            try
+            {
+                int fid = 0;
+                db = new Bestshooter1Entities();
+                if (db.Factors.Any())
+                    fid = db.Factors.OrderByDescending(p => p.Id).First().Id + 1;
+                Order o = FOrder(orderId);
+                Factor f = new Factor() { AssignmentNumber = "", BankName = "", CardNumber = "", Date = DateTime.Now, Fee = o.TotalFee, FollowId = refId.ToString(), Id = fid, OrderId = orderId, PurchaseNumber = 1 };
+                db.Factors.Add(f);
+                if (db.SaveChanges() == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
                 return false;
+            }
         }
     }
 }

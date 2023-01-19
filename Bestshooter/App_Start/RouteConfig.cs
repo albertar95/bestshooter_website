@@ -18,6 +18,11 @@ namespace Bestshooter
                 url: "{action}/{id}",
                 defaults: new { controller = "Home", action = "MainPage", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+                name: "Administrator",
+                url: "bsadmin/{controller}/{action}/{id}",
+                defaults: new { controller = "Admin" , action = "Login" , id = UrlParameter.Optional }
+                );
         }
     }
 }

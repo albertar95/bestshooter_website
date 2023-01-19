@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+@using (Html.BeginForm("Authen", "Admin", FormMethod.Post))
+{
+
+    <div class="login-form">
+        @if (TempData["err"] == "ok")
+        { 
+            <h1 style="background-color: #ff0000;">نام کاربری یا رمز عبور معتبر نیست</h1>
+        }
+        <div class="login-wrap">
+            <p class="login-img"><i class="fa fa-lock fa-x2"></i></p>
+            <div class="input-group">
+                <span class="input-group-addon"><i class=" fa fa-user"></i></span>
+                <input type="text" required="required" class="form-control" name="usrname" placeholder="نام کاربری" autofocus>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                <input type="password" required="required" class="form-control" name="pass" placeholder="رمز عبور">
+            </div>
+            <label class="checkbox">
+                <input name="remember" style="margin-left: 10px;" type="checkbox" value="true">
+                <label style="margin-left: 10px;">مرا بخاطر بسپار</label>
+            </label>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">ورود </button>
+        </div>
+    </div>
+}

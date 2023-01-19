@@ -1,0 +1,74 @@
+﻿@model Bestshooter.Models.DomainModel.Admin
+
+@{
+    ViewBag.Title = "ادمین";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+@using (Html.BeginForm("NewAdmin", "Admin", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    <div>
+        <div dir="rtl" style="margin: 50px;">
+            <a href="@Url.Action("MyProfile", "Admin")" class="btn btn-info">بازگشت به پروفایل</a>
+        </div>
+        <div dir="rtl" style="background-color: #0094ff;">
+            <h1>افزودن کاربر ادمین</h1>
+        </div>
+    </div>
+    <div dir="rtl" style="margin: 50px;">
+        <div class="editor-label">
+            <label style="font-size: 20px; margin: 10px;">نام</label>
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", style = "width:250px;margin: 10px;", required = "required" })
+        </div>
+
+        <div class="editor-label">
+            <label style="font-size: 20px; margin: 10px;">نام کاربری</label>
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Username, new { @class = "form-control", style = "width:250px;margin: 10px;", required = "required" })
+        </div>
+
+        <div class="editor-label">
+            <label style="font-size: 20px; margin: 10px;">رمز عبور</label>
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Password, new { @class = "form-control", style = "width:250px;margin: 10px;", required = "required" })
+        </div>
+
+        <div class="editor-label">
+            <label style="font-size: 20px; margin: 10px;">نقش</label>
+        </div>
+        <div class="editor-field">
+            <select id="namelist">
+                <option disabled="disabled" selected="selected">نقش را انتخاب کنید</option>
+                <option aid="1">ادمین اصلی</option>
+                <option aid="2">کاربر ادمین</option>
+                @Html.TextBoxFor(model => model.AdminRole, new { id = "Aid", name = "Aid", hidden = "hidden" })
+            </select>
+        </div>
+
+        <div style="margin: 10px; margin: 10px;">
+            <input type="submit" class="btn btn-success" value="افزودن" />
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script src="@Url.Content("~/Scripts/jquery-1.7.1.js")"></script>
+<script>
+    $(function ()
+    {
+        $("#namelist").change(function ()
+        {
+            var t = $("#namelist").find(":selected").attr("aid");
+            $("#Aid").val(t);
+        });
+    });
+</script>
+}

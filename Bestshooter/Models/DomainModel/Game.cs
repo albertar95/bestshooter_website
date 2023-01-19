@@ -23,7 +23,7 @@ namespace Bestshooter.Models.DomainModel
         public string Name { get; set; }
         public string Pic1 { get; set; }
         public string Pic2 { get; set; }
-        public string pic3 { get; set; }
+        public string Pic3 { get; set; }
         public string Preface { get; set; }
         public string Cont { get; set; }
     

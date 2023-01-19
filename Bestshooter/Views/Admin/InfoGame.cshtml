@@ -1,0 +1,62 @@
+﻿@model Bestshooter.Models.DomainModel.Game
+
+@{
+    ViewBag.Title = "جزییات بازی";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+    <div>
+        <div dir="rtl" style="margin: 50px;">
+            <a href="@Url.Action("games", "Admin")" class="btn btn-info">بازگشت به لیست بازی ها</a>
+        </div>
+        <div dir="rtl" style="background-color: #0094ff;">
+            <h1>اطلاعات تکمیلی</h1>
+        </div>
+    </div>
+
+    <div dir="rtl" style="margin: 50px;">
+    <div class="display-label">
+            <label style="font-size: 20px; margin: 10px;">نام</label>
+    </div>
+    <div class="display-field" style="background-color:whitesmoke;">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+            <label style="font-size: 20px; margin: 10px;">عکس در mainpage</label>
+    </div>
+    <div class="display-field">
+            <img src="~/@Model.Pic1" height="200" width="400" />
+    </div>
+
+    <div class="display-label">
+            <label style="font-size: 20px; margin: 10px;">عکس در صفحه بازی</label>
+    </div>
+    <div class="display-field">
+            <img src="~/@Model.Pic2" height="200" width="400" />
+    </div>
+
+    <div class="display-label">
+            <label style="font-size: 20px; margin: 10px;">عکس alternative</label>
+    </div>
+    <div class="display-field">
+            @if (Model.Pic3 != null)
+            {
+                @Html.HiddenFor(model => model.Pic3)
+                <img src="~/@Model.Pic3" height="200" width="400" />
+            }    </div>
+
+    <div class="display-label">
+            <label style="font-size: 20px; margin: 10px;">جمله ابتدایی</label>
+    </div>
+    <div class="display-field" style="background-color:whitesmoke;">
+        @Html.DisplayFor(model => model.Preface)
+    </div>
+
+    <div class="display-label">
+            <label style="font-size: 20px; margin: 10px;">توضیحات</label>
+    </div>
+    <div class="display-field" style="background-color:whitesmoke;">
+        @Html.DisplayFor(model => model.Cont)
+    </div>
+        </div>

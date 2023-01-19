@@ -1,0 +1,67 @@
+﻿@model Bestshooter.ViewModel.FactorViewModel
+
+@{
+    ViewBag.Title = "InfoFactor";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+    <div dir="rtl" style="margin: 50px;">
+        <a href="@Url.Action("Factors", "Admin")" class="btn btn-info">بازگشت به لیست فاکتور ها</a>
+    </div>
+<div dir="rtl" style="margin: 50px;">
+<div class="display-label">
+    <label style="font-size: 20px; margin: 10px;">نام</label>
+</div>
+<div class="display-field" style="background-color: whitesmoke;">
+    <label>@Model.order.Name @Model.order.Sirname</label>
+</div>
+<div class="display-label">
+    <label style="font-size: 20px; margin: 10px;">ایمیل</label>
+</div>
+<div class="display-field" style="background-color: whitesmoke;">
+    <label>@Model.order.Email</label>
+</div>
+<div class="display-label">
+    <label style="font-size: 20px; margin: 10px;">موبایل</label>
+</div>
+<div class="display-field" style="background-color: whitesmoke;">
+    <label>@Model.order.Mobile</label>
+</div>
+<div class="display-label">
+    <label style="font-size: 20px; margin: 10px;">مبلغ پرداخت شده</label>
+</div>
+<div class="display-field" style="background-color: whitesmoke;">
+    @Html.DisplayFor(model => model.factor.Fee)
+    <label style="display: inline; font-size: 16px;">تومان</label>
+</div>
+
+<div class="display-label">
+    <label style="font-size: 20px; margin: 10px;">کد رهگیری</label>
+</div>
+<div class="display-field" style="background-color: whitesmoke;">
+    @Html.DisplayFor(model => model.factor.FollowId)
+</div>
+
+<div class="display-label" >
+    <label style="font-size: 20px; margin: 10px;">تاریخ</label>
+</div>
+<div class="display-field" style="background-color: whitesmoke;">
+    @Html.DisplayFor(model => model.factor.Date)
+</div>
+
+<div class="display-label">
+    <label style="font-size: 20px; margin: 10px;">پکیج ها</label>
+</div>
+<div class="display-field">
+    <div style="direction: rtl;">
+    @foreach (var item in Model.packs)
+    {
+        <div style="border-color: cadetblue; border: solid;margin: 8px; float: right;">
+            <img src="~/@item.Picture" height="200" width="400" />
+            <h2 style="text-align:center;">@item.Name</h2>
+            <h2 style="text-align:center;">@item.Fee تومان</h2>
+        </div>
+    }
+        </div>
+</div>
+    </div>

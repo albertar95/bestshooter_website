@@ -34,7 +34,7 @@
                     @foreach (var item in Model.vm)
                     {
                         <div style="margin: 8px; float: right; border-color: cadetblue; border: solid;">
-                            <img src="@Url.Content(item.pack.Picture)" height="150" width="200" style="margin:5px;" />
+                            <img src="~/@Url.Content(item.pack.Picture)" height="150" width="200" style="margin:5px;" />
                             <div>
                                 <h2>پکیج @item.pack.Name</h2>
                                 <h2>تعداد : @item.qty</h2>
@@ -45,11 +45,13 @@
                 </div>
                 <br />
                 <div style="text-align: center; border: solid; border-color: cadetblue; background-color: #4800ff;" class="col-lg-offset-1 col-lg-10 col-sm-12">
-                    <h1>مبلغ کل : @Model.fee</h1>
+                    <h1>مبلغ کل : @Model.fee تومان</h1>
+                    <input type="text" value="@Model.fee" id="Hfee" hidden="hidden" />
                 </div>
                 <div class="col-lg-offset-1 col-lg-10 col-sm-12 section-title wow fadeInUp" data-wow-delay="0.4s">
                     <h1>اطلاعات تکمیلی</h1>
-                    <p>مهم : برنامه برای ایمیلی که وارد کنید و نام کاربری و رمز عبور به شماره موبایل شما ارسال خواهد شد.در وارد کردن اطلاعات دقت کنید</p>
+                    <p>مهم: بعد از انجام عملیات خرید اینترنتی شناسه و راهنما برای ایمیلی که شما در این قسمت وارد میکنید ارسال خواهد شد</p>
+                    <h2>در وارد کردن اطلاعات زیر دقت کنید</h2>
                 </div>
                 @using (Html.BeginForm("ShippingInfo", "Home", FormMethod.Post))
                 {
@@ -82,15 +84,21 @@
 @section scripts
     {
     <script>
-        $("#btngo").click(function (e)
-        {
-            var strMobile = $("#Mobile").val();
-            var reg2 = new RegExp("^09[0-3][0-9]{8}$");
-            if (reg2.test(strMobile) == false)
-            {
-                e.preventDefault();
-                alert("اطلاعات وارد شده نادرست است");
+        $(function () {
+            var f = $("#Hfee").val();
+            if (f == "0") {
+                alert("هیچ پکیجی انتخاب نشده.پکیج مورد نظر را انتخاب کرده و صفحه را دوباره لود کنید");
+                $("#btngo").remove();
             }
+            $("#btngo").click(function (e) {
+                var strMobile = $("#Mobile").val();
+                var reg2 = new RegExp("^09[0-3][0-9]{8}$");
+                if (reg2.test(strMobile) == false) {
+                    e.preventDefault();
+                    alert("اطلاعات وارد شده نادرست است");
+                }
+            });
+
         });
     </script>
-    }
+}

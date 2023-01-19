@@ -28,68 +28,79 @@
     </div>
 </div>
 <!-- Home section -->
-        <div class="overlay2" style="background-image:url(@Model.Game.Pic2);">
-    <section id="home" style="background:inherit;">
+<div class="overlay2" style="background-image:url(../@Model.Game.Pic2);">
+    <section id="home" style="background: inherit;">
         <div class="container">
             <div class="row">
-               <div class="col-md-offset-1 col-md-10 col-sm-12 wow fadeInUp" data-wow-delay="0.3s">
-                    <h1 style="color: black; opacity: 20; font-weight: 500;" class="wow fadeInUp" data-wow-delay="0.6s">@Model.Game.Name</h1>
-                    <a href="#about" class="smoothScroll btn btn-success btn-lg wow fadeInUp" data-wow-delay="1.2s">بیشتر بدانید</a>
+                <div class="col-md-offset-1 col-md-10 col-sm-12 wow fadeInUp" data-wow-delay="0.3s">
+                    <h1 style="color: black; opacity: 1220; font-weight: 500;" class="wow fadeInUp" data-wow-delay="0.6s">@Model.Game.Name</h1>
+                    <a href="#about" class="smoothScroll btn btn-success btn-lg wow fadeInUp" data-wow-delay="1.2s" style="margin-top: 50px;">پکیج ها
+                        <br />
+                        <i class="fa fa-angle-down fa-2x"></i></a>
                 </div>
             </div>
         </div>
     </section>
-            </div>
-<!-- About section -->
-<section id="about" style="background-image: url(../Content/Template/images/bg1.jpg);">
-    <div class="container">
-        <div class="row">
-            <div dir="rtl" class="col-md-12 col-sm-12 wow fadeInUp" data-wow-delay="0.2s">
-                <div style="margin: 5px;" class="about-thumb">
-                    <h1>پکیج @Model.Game.Name</h1>
-                    <p>@Model.Game.Cont</p>
+</div>
+<div class="mback">
+    <!-- About section -->
+    <section id="about" style="background: inherit;">
+        <div class="container">
+            <div class="row">
+                <div dir="rtl" class="col-md-12 col-sm-12 wow fadeInUp" data-wow-delay="0.2s">
+                    <div style="margin: 5px;" class="about-thumb">
+                        <h1 style="border-bottom: solid; border-color: cadetblue;">پکیج های @Model.Game.Name</h1>
+                        <p>@Model.Game.Cont</p>
+                    </div>
+                    <div class="clearfix"></div>
                 </div>
             </div>
-            <div class="clearfix"></div>
         </div>
-    </div>
-</section>
+    </section>
+</div>
+
 <!-- Gallery section -->
-<section id="gallery">
-    <div class="container">
-        <div class="row">
-            <div class=" col-md-12 col-sm-12 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="section-title">
-                    <h1>محتویات</h1>
-                </div>
-                <div style="margin: 15px; border: solid; border-color: cadetblue;">
-                    @foreach (var item in Model.Packages)
-                    {
-                        <div dir="rtl" class="col-md-12 col-sm-12 wow fadeInUp" data-wow-delay="0.2s">
-                            <h1>@item.Name</h1>
-                            <div class="about-thumb" style="margin-top: 5px; margin-bottom: 5px; border: double; border-color: cadetblue;">
-                                <div dir="ltr" class="col-md-6 col-sm-6 col-height wow fadeInUp" data-wow-delay="0.6s" style="margin-top: 30px; margin-bottom: 5px; height: inherit;">
-                                    <img src="@Url.Content(item.Picture)"  class="img-responsive" alt="About" />
-                                </div>
-                                <div id="asuimg2" dir="ltr" class="col-md-6 col-sm-6 col-height wow fadeInUp" data-wow-delay="0.6s" style="margin-top: 30px; margin-bottom: 5px; height: inherit;">
-                                    <img src="@Url.Content(item.DescPicture)"  class="img-responsive" alt="About" />
+<div class="mback">
+    <section id="gallery" style="background: inherit;">
+        <div class="container">
+            <div class="row">
+                <div class=" col-md-12 col-sm-12 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="section-title">
+                        <h1 style="background-color: honeydew;">لیست پکیج ها</h1>
+                    </div>
+                    <div style="margin: 15px; border: solid; border-color: cadetblue;">
+                        @foreach (var item in Model.Packages)
+                        {
+                            <div dir="rtl" class="col-md-12 col-sm-12 wow fadeInUp" data-wow-delay="0.2s">
+                                <h1 style="background-color: whitesmoke;">@item.Name</h1>
+                                <div class="about-thumb" style="margin-top: 5px; margin-bottom: 5px; border: double; border-color: cadetblue;">
+                                    <div dir="ltr" class="col-md-6 col-sm-6 col-height wow fadeInUp" data-wow-delay="0.6s" style="margin-top: 30px; margin-bottom: 5px; height: inherit;">
+                                        <img src="~/@Url.Content(item.Picture)"  class="img-responsive" alt="About" />
+                                    </div>
+                                    <div id="asuimg2" dir="ltr" class="col-md-6 col-sm-6 col-height wow fadeInUp" data-wow-delay="0.6s" style="margin-top: 30px; margin-bottom: 5px; height: inherit;">
+                                        <img src="~/@Url.Content(item.DescPicture)"  class="img-responsive" alt="About" />
+                                    </div>
+                                    <br />
+                                    <div style="display: inline-block;">
+                                        <iframe src="@item.MovLink1" height="320" width="569" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" >بدون ویدیو</iframe>
+                                    </div>
+                                    <div style="display: block;">
+                                        <a href="@Bestshooter.Helper.Utilities.FSetting().Aparat" style="font-size: 20px; font-weight: bold;">ویدیو های بیشتر را در کانال آپارات ما ببینید</a>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <a class="btn btn-success btnAddToCard" style="margin-bottom:5px;" pi="@item.Id" pack1="@item.Name" pack="@Model.Game.Name">اضافه کردن به لیست خرید</a>
                                 </div>
                             </div>
-                            <iframe height="100" width="100"></iframe>
-                            <iframe height="100" width="100"></iframe>
-                            <iframe height="100" width="100"></iframe>
-                            <iframe height="100" width="100"></iframe>
-                        </div>
-                        <div class="col-md-2 col-sm-3 fadeInUp" style="margin: 5px; float: inherit;">
-                            <a class="btn btn-success btnAddToCard" pi="@item.Id" pack1="@item.Name" pack="@Model.Game.Name">اضافه کردن به لیست خرید</a>
-                        </div>
-                        <div class="clearfix"></div>
-                    }
+                            <div class="clearfix"></div>
+                        }
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+</div>
 <!-- basketlist section -->
 <section id="contact">
     <div class="container">
@@ -100,7 +111,7 @@
                     @Html.Partial("_packList", Model.pl)
                 </div>
                 <div class="col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6">
-                    <a target="_blank" class="btn btn-success" style="font-size:22px;font-weight:bold;" href="/Checkout/@Model.Game.Name">مرحله بعدی</a>
+                    <a target="_blank" id="next" class="btn btn-success" style="font-size:22px;font-weight:bold;" href="/Checkout/@Model.Game.Name">مرحله بعدی</a>
                 </div>
             </div>
         </div>
@@ -119,7 +130,7 @@
                 $.ajax(
                     {
                         url: '@Url.Action("AddToCart", "Home")',
-                        data: { pName: pname, gName: gname},
+                        data: { pName: pname, gName: gname },
                         type: "Post",
                         dataType: "Json",
                         success: function (result) {
@@ -144,7 +155,7 @@
             url: '@Url.Action("priceCal", "Home")',
             type: "Post",
             dataType: "Json",
-            data: { pName: $(this).attr("packName"), gName: gname, Count: $(this).val(),price: pri },
+            data: { pName: $(this).attr("packName"), gName: gname, Count: $(this).val(), price: pri },
             success: function (result) {
                 if (result.Success) {
                     $(result.Script).attr("value", result.Html);

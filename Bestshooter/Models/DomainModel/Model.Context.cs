@@ -25,6 +25,7 @@ namespace Bestshooter.Models.DomainModel
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<Admin> Admins { get; set; }
         public DbSet<Factor> Factors { get; set; }
         public DbSet<Game> Games { get; set; }
         public DbSet<Message> Messages { get; set; }

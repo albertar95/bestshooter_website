@@ -28,7 +28,7 @@ namespace Bestshooter.Models.DomainModel
         public string MovLink1 { get; set; }
         public string MovLink2 { get; set; }
         public string MovLink3 { get; set; }
-        public string MivLink4 { get; set; }
+        public string MovLink4 { get; set; }
         public string MovLink5 { get; set; }
     
         public virtual Game Game { get; set; }

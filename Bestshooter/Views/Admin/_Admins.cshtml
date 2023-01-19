@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Bestshooter.Models.DomainModel.Admin>
+
+<div style="margin: 5px;">
+    <a href="@Url.Action("NewAdmin", "Admin")" class="btn btn-warning">افزودن کاربر ادمین</a>
+</div>
+<table class="table table-striped table-bordered table-hover">
+    <tr>
+        <th style="text-align: center;">نام
+        </th>
+        <th style="text-align: center;">نام کاربری
+        </th>
+        <th style="text-align: center;">حذف
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td style="text-align: center; vertical-align: central; font-size: 20px;">
+                @item.Name
+            </td>
+            <td style="text-align: center; vertical-align: central; font-size: 20px;">
+                @item.Username
+            </td>
+            <td style="text-align: center; vertical-align: central; font-size: 20px;">
+                <a href="@Url.Action("DeleteAdmin", "Admin", new { id = item.Id })" id="deleteA" gid="@item.Id" class="btn btn-danger">حذف</a>
+            </td>
+        </tr>
+    }
+
+</table>

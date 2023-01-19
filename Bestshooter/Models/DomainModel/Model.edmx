@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Bestshooter1Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="Bestshooter1Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="Bestshooter1ModelStoreContainer">
+          <EntitySet Name="Admins" EntityType="Bestshooter1Model.Store.Admins" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Factors" EntityType="Bestshooter1Model.Store.Factors" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Games" EntityType="Bestshooter1Model.Store.Games" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Messages" EntityType="Bestshooter1Model.Store.Messages" store:Type="Tables" Schema="dbo" />
@@ -21,6 +22,16 @@
             <End Role="Packs" EntitySet="Packs" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Admins">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="AdminRole" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Factors">
           <Key>
             <PropertyRef Name="Id" />
@@ -34,6 +45,7 @@
           <Property Name="CardNumber" Type="nvarchar" MaxLength="150" />
           <Property Name="BankName" Type="nvarchar" MaxLength="150" />
           <Property Name="AssignmentNumber" Type="nvarchar" MaxLength="150" />
+          <Property Name="Read" Type="tinyint" />
         </EntityType>
         <EntityType Name="Games">
           <Key>
@@ -43,7 +55,7 @@
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="150" />
           <Property Name="Pic1" Type="nvarchar" Nullable="false" MaxLength="250" />
           <Property Name="Pic2" Type="nvarchar" Nullable="false" MaxLength="250" />
-          <Property Name="pic3" Type="nvarchar" MaxLength="250" />
+          <Property Name="Pic3" Type="nvarchar" MaxLength="250" />
           <Property Name="Preface" Type="nvarchar" Nullable="false" MaxLength="250" />
           <Property Name="Cont" Type="text" Nullable="false" />
         </EntityType>
@@ -56,6 +68,7 @@
           <Property Name="Sirname" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Message" Type="text" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Read" Type="tinyint" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
@@ -89,7 +102,7 @@
           <Property Name="MovLink1" Type="nvarchar" MaxLength="100" />
           <Property Name="MovLink2" Type="nvarchar" MaxLength="100" />
           <Property Name="MovLink3" Type="nvarchar" MaxLength="100" />
-          <Property Name="MivLink4" Type="nvarchar" MaxLength="100" />
+          <Property Name="MovLink4" Type="nvarchar" MaxLength="100" />
           <Property Name="MovLink5" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Settings">
@@ -134,8 +147,9 @@
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Bestshooter1Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-        <EntityContainer Name="Bestshooter1Entities" annotation:LazyLoadingEnabled="true">
+      <Schema Namespace="Bestshooter1Model" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Bestshooter1Entities" annotation:LazyLoadingEnabled="true" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+          <EntitySet Name="Admins" EntityType="Bestshooter1Model.Admin" />
           <EntitySet Name="Factors" EntityType="Bestshooter1Model.Factor" />
           <EntitySet Name="Games" EntityType="Bestshooter1Model.Game" />
           <EntitySet Name="Messages" EntityType="Bestshooter1Model.Message" />
@@ -151,6 +165,16 @@
             <End Role="Pack" EntitySet="Packs" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="AdminRole" Nullable="false" />
+        </EntityType>
         <EntityType Name="Factor">
           <Key>
             <PropertyRef Name="Id" />
@@ -164,6 +188,7 @@
           <Property Type="String" Name="CardNumber" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="BankName" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="AssignmentNumber" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="Byte" Name="Read" />
           <NavigationProperty Name="Order" Relationship="Bestshooter1Model.FK_Factors_Orders" FromRole="Factor" ToRole="Order" />
         </EntityType>
         <EntityType Name="Game">
@@ -174,7 +199,7 @@
           <Property Type="String" Name="Name" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Pic1" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Pic2" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="pic3" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Pic3" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Preface" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Cont" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Packs" Relationship="Bestshooter1Model.FK_Packs_Games" FromRole="Game" ToRole="Pack" />
@@ -188,6 +213,7 @@
           <Property Type="String" Name="Sirname" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Message1" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
+          <Property Type="Byte" Name="Read" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -222,7 +248,7 @@
           <Property Type="String" Name="MovLink1" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="MovLink2" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="MovLink3" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="MivLink4" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MovLink4" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="MovLink5" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Game" Relationship="Bestshooter1Model.FK_Packs_Games" FromRole="Pack" ToRole="Game" />
         </EntityType>
@@ -269,11 +295,23 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Bestshooter1ModelStoreContainer" CdmEntityContainer="Bestshooter1Entities">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="Bestshooter1Model.Admin">
+              <MappingFragment StoreEntitySet="Admins">
+                <ScalarProperty Name="AdminRole" ColumnName="AdminRole" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Factors">
             <EntityTypeMapping TypeName="Bestshooter1Model.Factor">
               <MappingFragment StoreEntitySet="Factors">
+                <ScalarProperty Name="Read" ColumnName="Read" />
                 <ScalarProperty Name="AssignmentNumber" ColumnName="AssignmentNumber" />
                 <ScalarProperty Name="BankName" ColumnName="BankName" />
                 <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
@@ -291,7 +329,7 @@
               <MappingFragment StoreEntitySet="Games">
                 <ScalarProperty Name="Cont" ColumnName="Cont" />
                 <ScalarProperty Name="Preface" ColumnName="Preface" />
-                <ScalarProperty Name="pic3" ColumnName="pic3" />
+                <ScalarProperty Name="Pic3" ColumnName="Pic3" />
                 <ScalarProperty Name="Pic2" ColumnName="Pic2" />
                 <ScalarProperty Name="Pic1" ColumnName="Pic1" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -302,6 +340,7 @@
           <EntitySetMapping Name="Messages">
             <EntityTypeMapping TypeName="Bestshooter1Model.Message">
               <MappingFragment StoreEntitySet="Messages">
+                <ScalarProperty Name="Read" ColumnName="Read" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Message1" ColumnName="Message" />
                 <ScalarProperty Name="Sirname" ColumnName="Sirname" />
@@ -329,7 +368,7 @@
             <EntityTypeMapping TypeName="Bestshooter1Model.Pack">
               <MappingFragment StoreEntitySet="Packs">
                 <ScalarProperty Name="MovLink5" ColumnName="MovLink5" />
-                <ScalarProperty Name="MivLink4" ColumnName="MivLink4" />
+                <ScalarProperty Name="MovLink4" ColumnName="MovLink4" />
                 <ScalarProperty Name="MovLink3" ColumnName="MovLink3" />
                 <ScalarProperty Name="MovLink2" ColumnName="MovLink2" />
                 <ScalarProperty Name="MovLink1" ColumnName="MovLink1" />
@@ -368,7 +407,7 @@
     </edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
-  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <Connection>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
@@ -383,6 +422,6 @@
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
-    <Diagrams></Diagrams>
+    <Diagrams />
   </Designer>
 </edmx:Edmx>

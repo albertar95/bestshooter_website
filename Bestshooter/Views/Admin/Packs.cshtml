@@ -1,0 +1,97 @@
+﻿@model IEnumerable<Bestshooter.Models.DomainModel.Pack>
+
+@{
+    ViewBag.Title = "پکیج ها";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<div style="text-align: center;">
+    <h1>bestshooter.ir</h1>
+</div>
+
+<div class="row" dir="rtl">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="panel panel-default" dir="rtl" style="margin-top: 50px;">
+            <div class="panel-body">
+                @if (TempData["backformsavepack"] == "ok")
+                {
+                    <h1 style="background-color: #4cff00;">با موفقیت ثبت شد</h1>
+                }
+                @if (TempData["backfromdeletepack"] == "ok")
+                {
+                    <h1 style="background-color: #4cff00;">با موفقیت حذف شد</h1>
+                }
+                @if (TempData["backfromeditpack"] == "ok")
+                {
+                    <h1 style="background-color: #4cff00;">ویرایش با موفقیت انجام شد</h1>
+                }
+                @if (TempData["backfromdeletepack2"] == "nok")
+                {
+                    <h1 style="background-color: #ff0000;">مشکل در دیتابیس</h1>
+                }
+                <div style="margin: 5px;">
+                    <a href="@Url.Action("NewPack", "Admin")" class="btn btn-success">افزودن پکیج</a>
+                </div>
+
+                <div>
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <tr>
+                            <th style="text-align: center;">نام
+                            </th>
+                            <th style="text-align: center;">عکس
+                            </th>
+                            <th style="text-align: center;">مشخصات تفنگ ها 
+                            </th>
+                            <th style="text-align: center;">بازی
+                            </th>
+                            <th style="text-align: center;">قیمت
+                            </th>
+                            <th style="text-align: center;">عملیات ها</th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr class="odd">
+                                <td style="text-align: center; vertical-align: central; font-size: 20px;">
+                                    <label>@item.Name.ToString()</label>
+                                </td>
+                                <td>
+                                    @if (item.Picture != null)
+                                    {
+                                        <img src="~/@Url.Content(item.Picture)" alt="بدون عکس" width="100" height="100" />
+                                    }
+                                    else
+                                    {
+                                        <label style="text-align: center; font-size: 20px;">بدون عکس</label>   
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.DescPicture != null)
+                                    {
+                                        <img src="~/@Url.Content(item.DescPicture)" alt="بدون عکس" width="100" height="100" />
+                                    }
+                                    else
+                                    {
+                                        <label style="text-align: center; font-size: 20px;">بدون عکس</label>
+
+                                    }
+                                </td>
+                                <td>
+                                    @Bestshooter.Helper.AdminUtilities.FGame(item.GameId).Name
+                                </td>
+                                <td>
+                                    @item.Fee
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("EditPack", "Admin", new { id = item.Id })" class="btn btn-warning">ویرایش</a>
+                                    <a href="@Url.Action("DeletePack", "Admin", new { id = item.Id })" id="deleteG" gid="@item.Id" class="btn btn-danger">حذف</a>
+                                    <a href="@Url.Action("InfoPack", "Admin", new { id = item.Id })" class="btn btn-info">جزییات</a>
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

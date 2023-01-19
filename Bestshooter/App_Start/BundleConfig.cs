@@ -22,6 +22,8 @@ namespace Bestshooter
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
+            bundles.Add(new ScriptBundle("~/bundles/Highcharts").Include( "~/Scripts/Highcharts-4.0.1/js/highcharts.js" ,
+                "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
 

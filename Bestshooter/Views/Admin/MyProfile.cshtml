@@ -1,0 +1,66 @@
+﻿@model Bestshooter.ViewModel.AdminViewModel
+
+@{
+    ViewBag.Title = "پروفایل";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<div style="text-align: center;">
+    <h1>bestshooter.ir</h1>
+</div>
+        <div dir="rtl" style="margin: 50px;">
+            <a href="@Url.Action("Panel", "Admin")" class="btn btn-info">بازگشت به پنل ادمین</a>
+        </div>
+<div dir="rtl" style="margin: 50px;">
+    @if (TempData["backfrompass"] == "ok")
+    {
+        <h1 style="background-color: #4cff00;">رمز عبور با موفقیت ویرایش شد</h1>
+    }
+    @if (TempData["backfrompass"] == "nok")
+    {
+        <h1 style="background-color: #ff0000;">مشکل در دیتابیس</h1>
+    }
+    <div class="display-label">
+        <label style="font-size: 20px; margin: 10px;">نام</label>
+    </div>
+    <div class="display-field" style="background-color: whitesmoke;">
+        @Html.DisplayFor(model => model.admin.Name)
+    </div>
+
+    <div class="display-label">
+        <label style="font-size: 20px; margin: 10px;">نام کاربری</label>
+    </div>
+    <div class="display-field" style="background-color: whitesmoke;">
+        @Html.DisplayFor(model => model.admin.Username)
+    </div>
+    <div>
+        <a class="btn btn-success" href="@Url.Action("ChangePass", "Admin")">تغییر رمز عبور</a>
+    </div>
+    <div class="row" dir="rtl">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="panel panel-default" dir="rtl" style="margin-top: 50px;">
+                <div class="panel-body">
+                    @if (TempData["backfromadd"] == "ok")
+                    {
+                        <h1 style="background-color: #4cff00;">با موفقیت ثبت شد</h1>
+                    }
+                    @if (TempData["backfromdel"] == "ok")
+                    {
+                        <h1 style="background-color: #4cff00;">با موفقیت حذف شد</h1>
+                    }
+                    @if (TempData["backfromdel"] == "nok")
+                    {
+                        <h1 style="background-color: #ff0000;">مشکل در دیتابیس</h1>
+                    }
+                    @if (TempData["backfromadd"] == "nok")
+                    {
+                        <h1 style="background-color: #ff0000;">مشکل در دیتابیس</h1>
+                    }
+                    @if (Model.admin.AdminRole == 1)
+                    { 
+                        @Html.Partial("_Admins", Model.admins)
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

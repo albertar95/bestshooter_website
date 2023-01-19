@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "ChangePass";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+@using (Html.BeginForm("ChangePass", "Admin", FormMethod.Post))
+{
+
+    <div class="login-form">
+        @if (ViewBag.err1 == "ok")
+        { 
+            <h1 style="background-color: #ff0000;">رمز عبور فعلی نامعتبر است</h1>
+        }
+                @if (ViewBag.notmatch == "ok")
+        { 
+            <h1 style="background-color: #ff0000;">تکرار رمز عبور جدید نامعتبر است</h1>
+        }
+        <div class="login-wrap">
+            <p class="login-img"><i class="fa fa-lock fa-x2"></i></p>
+            <div class="input-group">
+                <span class="input-group-addon"><i class=" fa fa-shield"></i></span>
+                <input type="password" required="required" class="form-control" name="current" placeholder="رمز عبور فعلی" autofocus>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                <input type="password" required="required" class="form-control" name="pass" placeholder="رمز عبور جدید">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                <input type="password" required="required" class="form-control" name="Rpass" placeholder="تکرار رمز عبور جدید">
+            </div>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">ثبت تغییرات </button>
+            <a href="@Url.Action("MyProfile","Admin")" class="btn btn-info btn-lg btn-block" type="submit">بازگشت به پروفایل </a>
+
+        </div>
+    </div>
+}

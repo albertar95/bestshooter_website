@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>bestshooter.ir</title>
+    <link href="@Url.Content("~/Content/Template/css/bootstrap.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Template/css/style.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Template/css/font-awesome.min.css")" rel="stylesheet" />
+    @RenderSection("styles",required:false)
+</head>
+<body style="background-color:rgba(230, 160, 245, 0.85);">
+    @RenderBody()
+    <script src="@Url.Content("~/Content/Template/js/bootstrap.min.js")"></script>
+    @RenderSection("scripts",required:false)
+</body>
+</html>

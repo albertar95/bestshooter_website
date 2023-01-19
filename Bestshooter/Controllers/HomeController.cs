@@ -152,31 +152,31 @@ namespace Bestshooter.Controllers
             {
                 packs.Add(Helper.Utilities.FPack(item.Name.Substring(12 + id.Count())));
             }
-            List<ViewModel.ChecksViewModel> cvm = new List<ViewModel.ChecksViewModel>();
-            ViewModel.ChecksViewModel pak;
-            foreach (var item in packs)
-            {
-                pak = new ViewModel.ChecksViewModel();
-                pak.pack = item;
-                pak.qty = int.Parse(MyCart.Where(p => p.Name == "BSSPackage_" + id + "_" + item.Name).First().Value);
-                pak.totalFee = (int.Parse(item.Fee) * pak.qty).ToString();
-                cvm.Add(pak);
-            }
-            int tfee = 0;
-            foreach (var item in cvm)
-            {
-                tfee += int.Parse(item.totalFee);
-            }
-            string pids = "";
-            foreach (var item in packs)
-            {
-                pids += item.Id.ToString() + ",";
-            }
-            ViewModel.CheckoutPageViewModel cpvm = new ViewModel.CheckoutPageViewModel();
-            cpvm.vm = cvm;
-            cpvm.fee = tfee.ToString();
-            cpvm.pa = pids;
-            return View(cpvm);
+                List<ViewModel.ChecksViewModel> cvm = new List<ViewModel.ChecksViewModel>();
+                ViewModel.ChecksViewModel pak;
+                foreach (var item in packs)
+                {
+                    pak = new ViewModel.ChecksViewModel();
+                    pak.pack = item;
+                    pak.qty = int.Parse(MyCart.Where(p => p.Name == "BSSPackage_" + id + "_" + item.Name).First().Value);
+                    pak.totalFee = (int.Parse(item.Fee) * pak.qty).ToString();
+                    cvm.Add(pak);
+                }
+                int tfee = 0;
+                foreach (var item in cvm)
+                {
+                    tfee += int.Parse(item.totalFee);
+                }
+                string pids = "";
+                foreach (var item in packs)
+                {
+                    pids += item.Id.ToString() + ",";
+                }
+                ViewModel.CheckoutPageViewModel cpvm = new ViewModel.CheckoutPageViewModel();
+                cpvm.vm = cvm;
+                cpvm.fee = tfee.ToString();
+                cpvm.pa = pids;
+                return View(cpvm);
         }
         [HttpPost]
         public ActionResult SendMessage(string Name, string Sirname, string Message)
@@ -205,18 +205,88 @@ namespace Bestshooter.Controllers
         [HttpPost]
         public ActionResult ShippingInfo(string totalfee,string packs, string Name, string Sirname, string Mobile, string Email)
         {
-                if (Helper.Utilities.SaveOrder(Name, Sirname, Email, Mobile, packs, totalfee))
+            //if (totalfee != "0")
+            //{
+            //    int orderId = Helper.Utilities.SaveOrder(Name, Sirname, Email, Mobile, packs, totalfee);
+            //    if (orderId != -1)
+            //    {
+            //        System.Net.ServicePointManager.Expect100Continue = false;
+            //        Zarinpal.PaymentGatewayImplementationServicePortTypeClient zp = new Zarinpal.PaymentGatewayImplementationServicePortTypeClient();
+            //        string Authority;
+            //        int Status = zp.PaymentRequest("4dac9b8c-9dac-47d6-8745-14feae8e8897", int.Parse(totalfee), "خرید از سایت بست شوتر", Email, Mobile, "https://bestshooter.ir/Verify", out Authority);
+
+            //        if (Status == 100)
+            //        {
+            //            if (Request.Cookies.AllKeys.Contains("BSSPackageShipping") == false)
+            //            {
+            //                var tempcookie = new HttpCookie("BSSPackageShipping", orderId.GetHashCode().ToString());
+            //                tempcookie.Expires = DateTime.Now.AddHours(2);
+            //                tempcookie.HttpOnly = true;
+            //                Response.Cookies.Add(tempcookie);
+            //            }
+            //            else
+            //            {
+            //                var tempcookie = new HttpCookie("BSSPackageShipping");
+            //                tempcookie.Value = (orderId * 120000).ToString();
+            //                tempcookie.Expires = DateTime.Now.AddHours(2);
+            //                tempcookie.HttpOnly = true;
+            //                Response.Cookies.Set(tempcookie);
+            //            }
+            //            return Redirect("https://www.zarinpal.com/pg/StartPay/" + Authority);
+            //        }
+            //        else
+            //        {
+            //            Response.Write("error: " + Status);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        Response.Write("مشکل در دیتابیس");
+            //    }
+            //}
+                return View("Temp");
+        }
+        public ActionResult Verify(string Status , string Authority) 
+        {
+            if (string.IsNullOrEmpty(Status) == false && string.IsNullOrEmpty(Authority) == false && Status.ToLower() == "ok")
+            {
+                int orderId = 0;
+                Order ord;
+                if (Request.Cookies.AllKeys.Contains("BSSPackageShipping"))
                 {
-                    return RedirectToAction("MainPage");
+                    //update
+                    var cookie = new HttpCookie("BSSPackageShipping");
+                    orderId = int.Parse(cookie.Value) / 120000;
+                    cookie.Expires = DateTime.Now;
+                    Response.Cookies.Set(cookie);
+                    ord = Helper.Utilities.FOrder(orderId);
+                    long RefID;
+                    System.Net.ServicePointManager.Expect100Continue = false;
+                    Zarinpal.PaymentGatewayImplementationServicePortTypeClient zp = new Zarinpal.PaymentGatewayImplementationServicePortTypeClient();
+                    int status = zp.PaymentVerification("YOUR-ZARINPAL-MERCHANT-CODE", Authority, int.Parse(ord.TotalFee), out RefID);
+                    if (status == 100)
+                    {
+                        if (Helper.Utilities.SaveFactor(orderId, RefID))
+                            Response.Write("Success!! RefId: " + RefID);
+                        else
+                            Response.Write("خرید با موفقیت انجام شد اما اطلاعات فاکتور در دیتابیس ثبت نشد.لطفا به مسئولین سایت اطلاع دهید");
+                    }
+                    else
+                    {
+                        Response.Write("Error!! Status: " + Status);
+                    }
                 }
                 else
-                { 
-                
+                {
+                    Response.Write("مشکل در جمع آوری اطلاعات کاربر.لطفا با مسئولین سایت تماس بگیرید");
                 }
-
+            }
+            else
+            { 
+            //پیام اشتباه
+            }
             return View();
         }
-
     }
     public class JsonData
     {

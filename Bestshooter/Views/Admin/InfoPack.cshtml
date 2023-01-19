@@ -1,0 +1,106 @@
+﻿@model Bestshooter.Models.DomainModel.Pack
+
+@{
+    ViewBag.Title = "جزییات پکیج";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<div>
+    <div dir="rtl" style="margin: 50px;">
+        <a href="@Url.Action("Packs", "Admin")" class="btn btn-info">بازگشت به لیست پکیج ها</a>
+    </div>
+    <div dir="rtl" style="background-color: #0094ff;">
+        <h1>اطلاعات تکمیلی</h1>
+    </div>
+</div>
+
+<div dir="rtl" style="margin: 50px;">
+    <div class="display-label">
+        <label style="font-size: 20px; margin: 10px;">نام</label>
+    </div>
+    <div class="display-field" style="background-color: whitesmoke;">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+        <label style="font-size: 20px; margin: 10px;">عکس</label>
+    </div>
+    <div class="display-field">
+        <img src="~/@Model.Picture" height="200" width="400" />
+    </div>
+
+    <div class="display-label">
+        <label style="font-size: 20px; margin: 10px;">عکس مشخصات تفنگ ها</label>
+    </div>
+    <div class="display-field">
+        <img src="~/@Model.DescPicture" height="200" width="400" />
+    </div>
+
+    <div class="display-label">
+        <label style="font-size: 20px; margin: 10px;">قیمت</label>
+    </div>
+    <div class="display-field" style="background-color: whitesmoke;">
+        @Html.DisplayFor(model => model.Fee)
+        <label style="display: inline; font-size: 16px;">تومان</label>
+    </div>
+
+    <div class="display-label">
+        <label style="font-size: 20px; margin: 10px;">توضیح کوتاه</label>
+    </div>
+    <div class="display-field" style="background-color: whitesmoke;">
+        @Html.DisplayFor(model => model.Sentence)
+    </div>
+    <div class="display-label">
+        <label style="font-size: 20px; margin: 10px;">توضیح بلند (کامل)</label>
+    </div>
+    <div class="display-field" style="background-color: whitesmoke;">
+        @Html.DisplayFor(model => model.Cont)
+    </div>
+    <div class="display-label">
+        <label style="font-size: 20px; margin: 10px;">بازی</label>
+    </div>
+    <div class="display-field" style="background-color: whitesmoke;">
+        <label>@Bestshooter.Helper.AdminUtilities.FGame(Model.GameId).Name</label>
+    </div>
+    <div class="display-label">
+        <label style="font-size: 20px; margin: 10px;">تگ ها</label>
+    </div>
+    <div class="display-field" style="background-color: whitesmoke;">
+        @Html.DisplayFor(model => model.Tags)
+    </div>
+    <div class="display-label">
+        <label style="font-size: 20px; margin: 10px;">کلید واژه ها</label>
+    </div>
+    <div class="display-field" style="background-color: whitesmoke;">
+        @Html.DisplayFor(model => model.Keywords)
+    </div>
+    <div class="display-label">
+        <label style="font-size: 20px; margin: 10px;">فیلم 1</label>
+    </div>
+    <div class="display-field">
+        <iframe src="@Model.MovLink1" height="200" width="400"></iframe>
+    </div>
+    <div class="display-label">
+        <label style="font-size: 20px; margin: 10px;">فیلم 2</label>
+    </div>
+    <div class="display-field">
+        <iframe src="@Model.MovLink2" height="200" width="400"></iframe>
+    </div>
+    <div class="display-label">
+        <label style="font-size: 20px; margin: 10px;">فیلم 3</label>
+    </div>
+    <div class="display-field">
+        <iframe src="@Model.MovLink3" height="200" width="400"></iframe>
+    </div>
+    <div class="display-label">
+        <label style="font-size: 20px; margin: 10px;">فیلم 4</label>
+    </div>
+    <div class="display-field">
+        <iframe src="@Model.MovLink4" height="200" width="400"></iframe>
+    </div>
+    <div class="display-label">
+        <label style="font-size: 20px; margin: 10px;">فیلم 5</label>
+    </div>
+    <div class="display-field">
+        <iframe src="@Model.MovLink5" height="200" width="400"></iframe>
+    </div>
+</div>

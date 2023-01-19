@@ -13,13 +13,14 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Bestshooter</RootNamespace>
     <AssemblyName>Bestshooter</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,6 +30,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,24 +39,24 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -114,6 +116,7 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
@@ -128,11 +131,17 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\AdminUtilities.cs" />
+    <Compile Include="Helper\UploadHelper.cs" />
     <Compile Include="Helper\Utilities.cs" />
+    <Compile Include="Models\DomainModel\Admin.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DomainModel\Factor.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -167,8 +176,15 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\Zarinpal\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\AdminViewModel.cs" />
     <Compile Include="ViewModel\CheckoutPageViewModel.cs" />
     <Compile Include="ViewModel\ChecksViewModel.cs" />
+    <Compile Include="ViewModel\FactorViewModel.cs" />
     <Compile Include="ViewModel\FirstPageViewModel.cs" />
     <Compile Include="ViewModel\PackageViewModel.cs" />
     <Compile Include="ViewModel\PacklistViewModel.cs" />
@@ -279,6 +295,9 @@
     <Content Include="Models\DomainModel\Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\Template\fonts\BYekan.eot" />
+    <Content Include="Content\Template\fonts\BYekan.ttf" />
+    <Content Include="Content\Template\fonts\BYekan.woff" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Models\DomainModel\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -305,6 +324,12 @@
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Service References\Zarinpal\configuration91.svcinfo" />
+    <Content Include="Service References\Zarinpal\configuration.svcinfo" />
+    <Content Include="Service References\Zarinpal\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -320,6 +345,30 @@
     <Content Include="Views\Home\Checkout.cshtml" />
     <Content Include="Views\Home\Package.cshtml" />
     <Content Include="Views\Home\_packList.cshtml" />
+    <Content Include="Service References\Zarinpal\PaymentGatewayImplementationService.wsdl" />
+    <Content Include="Views\Admin\Games.cshtml" />
+    <Content Include="Views\Admin\NewGame.cshtml" />
+    <Content Include="Views\Admin\Panel.cshtml" />
+    <Content Include="Views\Shared\_Layout2.cshtml" />
+    <Content Include="Views\Admin\EditGame.cshtml" />
+    <Content Include="Views\Admin\InfoGame.cshtml" />
+    <Content Include="Views\Admin\Packs.cshtml" />
+    <Content Include="Views\Admin\NewPack.cshtml" />
+    <Content Include="Views\Admin\EditPack.cshtml" />
+    <Content Include="Views\Admin\InfoPack.cshtml" />
+    <Content Include="Views\Admin\Factors.cshtml" />
+    <Content Include="Views\Admin\InfoFactor.cshtml" />
+    <Content Include="Views\Admin\Unsuccessful.cshtml" />
+    <Content Include="Views\Admin\InfoUFactor.cshtml" />
+    <Content Include="Views\Admin\Messages.cshtml" />
+    <Content Include="Views\Admin\MessageInfo.cshtml" />
+    <Content Include="Views\Admin\Setting.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
+    <Content Include="Views\Admin\MyProfile.cshtml" />
+    <Content Include="Views\Admin\_Admins.cshtml" />
+    <Content Include="Views\Admin\NewAdmin.cshtml" />
+    <Content Include="Views\Admin\ChangePass.cshtml" />
+    <Content Include="Views\Home\Temp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -329,6 +378,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\Zarinpal\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,14 @@
+﻿@model Bestshooter.Models.DomainModel.Message
+
+@{
+    ViewBag.Title = "MessageInfo";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+    <div dir="rtl" style="margin: 50px;">
+        <a href="@Url.Action("Messages", "Admin")" class="btn btn-info">بازگشت به لیست پیام ها</a>
+    </div>
+<div dir="rtl" style="margin: 50px;">
+    <h1>پیام از طرف : @Model.Name  @Model.Sirname</h1>
+    <h2>در تاریخ : @Model.Date</h2>
+    <textarea readonly="readonly" style="width:500px;text-align:center;min-height:400px;">@Model.Message1</textarea>
+    </div>

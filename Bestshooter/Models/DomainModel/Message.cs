@@ -19,5 +19,6 @@ namespace Bestshooter.Models.DomainModel
         public string Sirname { get; set; }
         public string Message1 { get; set; }
         public System.DateTime Date { get; set; }
+        public Nullable<byte> Read { get; set; }
     }
 }

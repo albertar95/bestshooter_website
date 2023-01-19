@@ -1,0 +1,163 @@
+﻿@model Bestshooter.Models.DomainModel.Pack
+
+@{
+    ViewBag.Title = "ویرایش پکیج";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+
+@using (Html.BeginForm("UpdatePack", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    <div>
+        <div dir="rtl" style="margin: 50px;">
+            <a href="@Url.Action("Packs", "Admin")" class="btn btn-info">بازگشت به لیست پکیج ها</a>
+        </div>
+        <div dir="rtl" style="background-color: #0094ff;">
+            <h1>ویرایش پکیج</h1>
+        </div>
+    </div>
+
+
+    @Html.HiddenFor(model => model.Id)
+    <div dir="rtl" style="margin: 50px;">
+        @if (TempData["backfromeditpack2"] == "nok")
+        { 
+            <h1 style="background-color: #ff0000;">مشکل در دیتابیس</h1>
+        }
+        <div class="editor-label">
+            <label style="font-size: 20px; margin: 10px;">نام</label>
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", style = "width:250px;margin: 10px;", required = "required" })
+        </div>
+        <div class="editor-label">
+            <label style="font-size: 20px; margin: 10px;">عکس</label>
+        </div>
+        <div class="editor-field">
+            <div>
+                <img src="~/@Model.Picture" width="400" height="200" />
+                @Html.HiddenFor(model => model.Picture)
+            </div>
+            @Html.Upload("Main", new { style = "margin: 10px;" })
+        </div>
+
+        <div class="editor-label">
+            <label style="font-size: 20px; margin: 10px;">عکس مشخصات تفنگ ها</label>
+        </div>
+        <div class="editor-field">
+            <div>
+                <img src="~/@Model.DescPicture" width="400" height="200" />
+                @Html.HiddenFor(model => model.DescPicture)
+            </div>
+
+            @Html.Upload("Guns", new { style = "margin: 10px;" })
+        </div>
+
+        <div class="editor-label">
+            <label style="font-size: 20px; margin: 10px;">توضیح کوتاه</label>
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Sentence, new { @class = "form-control", style = "width:500px;margin: 10px;", rows = "3" })
+        </div>
+
+        <div class="editor-label">
+            <label style="font-size: 20px; margin: 10px;">توضیح بلند(کامل)</label>
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Cont, new { @class = "form-control", style = "width:500px;margin: 10px;", rows = "6" })
+        </div>
+
+        <div class="editor-label">
+            <label style="font-size: 20px; margin: 10px;">قیمت</label>
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Fee, new { @class = "form-control", style = "width:250px;margin: 10px;display:inline;", required = "required" })
+            <label style="display: inline; font-size: 16px;">تومان</label>
+        </div>
+
+        <div class="editor-label">
+            <label style="font-size: 20px; margin: 10px;">تگ ها</label>
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Tags, new { @class = "form-control", style = "width:250px;margin: 10px;" })
+        </div>
+
+        <div class="editor-label">
+            <label style="font-size: 20px; margin: 10px;">کلمات کلیدی</label>
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Keywords, new { @class = "form-control", style = "width:250px;margin: 10px;" })
+        </div>
+
+        <div class="editor-label">
+            <label style="font-size: 20px; margin: 10px;">بازی فعلی</label>
+        </div>
+        <div class="editor-field">
+            <input type="text" readonly="true" value="@Bestshooter.Helper.AdminUtilities.FGame(Model.GameId).Name" />
+            <select id="namelist2">
+                <option disabled="disabled" selected="selected">بازی را انتخاب کنید</option>
+                @foreach (var item in Bestshooter.Helper.AdminUtilities.Gamelist())
+                {
+                    <option gid="@item.Id">@item.Name</option>
+                }
+                @Html.TextBoxFor(model => model.GameId, new { id = "Gid", name = "Gid", hidden = "hidden", value = Model.GameId })
+
+            </select>
+        </div>
+        <div class="editor-label">
+            <label style="font-size: 20px; margin: 10px;">لینک فیلم 1</label>
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.MovLink1, new { @class = "form-control", style = "width:350px;margin: 10px;"})
+        </div>
+
+        <div class="editor-label">
+            <label style="font-size: 20px; margin: 10px;">لینک فیلم 2</label>
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.MovLink2, new { @class = "form-control", style = "width:350px;margin: 10px;"})
+        </div>
+
+        <div class="editor-label">
+            <label style="font-size: 20px; margin: 10px;">لینک فیلم 3</label>
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.MovLink3, new { @class = "form-control", style = "width:350px;margin: 10px;"})
+        </div>
+
+        <div class="editor-label">
+            <label style="font-size: 20px; margin: 10px;">لینک فیلم 4</label>
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.MovLink4, new { @class = "form-control", style = "width:350px;margin: 10px;"})
+        </div>
+
+        <div class="editor-label">
+            <label style="font-size: 20px; margin: 10px;">لینک فیلم 5</label>
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.MovLink5, new { @class = "form-control", style = "width:350px;margin: 10px;"})
+        </div>
+
+        <div style="margin: 10px; margin: 10px;">
+            <input type="submit" class="btn btn-success" value="ثبت تغییرات" />
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script src="@Url.Content("~/Scripts/jquery-1.7.1.js")"></script>
+<script>
+    $(function ()
+    {
+        $("#namelist2").change(function ()
+        {
+            var t = $("#namelist2").find(":selected").attr("gid");
+            $("#Gid").val(t);
+        });
+    });
+</script>
+}

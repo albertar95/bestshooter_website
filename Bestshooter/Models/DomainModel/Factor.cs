@@ -23,6 +23,7 @@ namespace Bestshooter.Models.DomainModel
         public string CardNumber { get; set; }
         public string BankName { get; set; }
         public string AssignmentNumber { get; set; }
+        public Nullable<byte> Read { get; set; }
     
         public virtual Order Order { get; set; }
     }
